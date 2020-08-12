@@ -1,0 +1,149 @@
+/* FONTS */
+
+@font-face {
+    font-family: Montserrat;
+    src: url(fonts/Montserrat-Regular.ttf);
+}
+
+/* BASE */
+
+html {
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+}
+
+body {
+    margin: 0;
+    max-width: 100%;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    color: rgb(78, 78, 216);
+}
+
+/*  LAYOUT */
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* COMPONENTS */
+
+header, .search, .meme-editor, .gallery, footer {
+    border: 1px solid brown;
+}
+
+/* Header */
+
+header {
+    padding: 0 50px;
+    background-color: #ff7f00;
+    color: #fff;
+}
+
+.nav-menu {
+    width: 30%;
+}
+
+/* Meme Editor */
+
+.canvas-container {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto 0;
+}
+
+.meme-editor {
+    padding: 25px 50px;
+    height: 600px;
+    background-color: #e3e3e3;
+}
+
+.panel-line {
+    justify-content: center;
+}
+
+.meme-editor button, .meme-editor a {
+    width: 60px;
+    height: 60px;
+    border: none;
+    margin: 10px;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+.meme-editor .line-text {
+    width: 374px;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.meme-editor select {
+    width: 218px;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin: 10px;
+}
+
+.meme-editor .fill-color, .outline-color {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    margin: 10px;
+}
+
+.meme-editor .download, .meme-editor .save, .meme-editor .share {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ff7f00;
+    color: #fff;
+    width: 120px;
+    text-align: center;
+}
+
+/* Gallery */
+
+/* HELPERS */
+
+.hidden {
+    visibility: hidden;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.center {
+    align-items: center;
+}
+
+.middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* MEDIA QUERIES */

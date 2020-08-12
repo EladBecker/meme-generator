@@ -1,0 +1,15 @@
+header, .search, .meme-editor, .gallery, footer {
+    border: 1px solid brown;
+}
+
+.canvas-container {
+    border: 1px solid blue;
+    width: 500px;
+    height: 500px;
+}
+
+/* HELPERS */
+
+.hidden {
+    display: none;
+}
