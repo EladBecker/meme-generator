@@ -5,6 +5,11 @@
     src: url(fonts/Montserrat-Regular.ttf);
 }
 
+@font-face {
+    font-family: Bebas-Neue;
+    src: url(fonts/BebasNeue-Regular.ttf);
+}
+
 /* BASE */
 
 html {
@@ -39,6 +44,12 @@ a:hover {
     margin: 0 auto;
 }
 
+.logo {
+    font-family: Bebas-Neue;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
 /* COMPONENTS */
 
 header, .search, .meme-editor, .gallery, footer {
@@ -54,7 +65,7 @@ header {
 }
 
 .nav-menu {
-    width: 30%;
+    width: 335px;
 }
 
 /* Meme Editor */
@@ -83,6 +94,8 @@ header {
     margin: 10px;
     border-radius: 12px;
     background-color: #fff;
+    font-family: inherit;
+    font-size: 1.2em;
 }
 
 .meme-editor .line-text {
@@ -104,6 +117,10 @@ header {
     margin: 10px;
 }
 
+.meme-editor .font-up, .meme-editor .font-down {
+    font-size: 0.8em;
+}
+
 .meme-editor .fill-color, .outline-color {
     width: 60px;
     height: 60px;
@@ -122,14 +139,54 @@ header {
 
 /* Gallery */
 
+
+.gallery-container{
+    background-color: #e3e3e3;
+    max-width: 1200px;
+}
+.img-list-container {
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.gallery-container img {
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin: 10px;
+}
+
+/* Footer */
+
+footer {
+    height: 205px;
+    background-color: #ff7f00;
+    color: #fff;
+    text-align: center;
+}
+
 /* HELPERS */
 
 .hidden {
     visibility: hidden;
+    height: 0;
+    padding: 0;
 }
 
-.flex {
+.flex-wrap {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+    /* grid-template-columns: repeat(auto-fit, minmax(6%, 1fr)); */
+    /* grid-template-rows: repeat(auto-fill, minmax(6%, 1fr)); */
+    grid-template-columns: repeat(12, 6%);
+    /* grid-template-rows: repeat(12, 1fr); */
+    grid-auto-flow: dense;
 }
 
 .space-between {
@@ -146,4 +203,42 @@ header {
     justify-content: center;
 }
 
+.icon {
+    width: 38px;
+    height: 38px;
+}
+
+.square {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
 /* MEDIA QUERIES */
+
+@media(min-width: 667px) {
+    .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(6%, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(6%, 1fr));
+        grid-auto-flow: dense;
+    }
+
+}
+
+@media(max-width: 666px){
+    .main-container{
+        width:100%;
+        margin:0;
+    }
+    .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(12%, 1fr));
+        grid-auto-flow: dense;
+    }
+    .square{
+        grid-row: span 3;
+        grid-column: span 3;
+    }
+}

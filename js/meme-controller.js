@@ -1,5 +1,6 @@
 'use strict';
 
+
 window.addEventListener('resize', function () {
     // Note: changing the canvas dimension this way clears the canvas
     resizeCanvas();
@@ -10,8 +11,9 @@ window.addEventListener('resize', function () {
 let gCurrId;
 let gCurrLineIdx;
 
-function initMemeEditor(id){
+function initMemeEditor(id) {
     document.querySelector('.meme-editor').classList.remove('hidden');
+    document.querySelector('.gallery').classList.add('hidden');
     initCanvas();
     gCurrId = id;
     drawMeme(getImgById(gCurrId).url, getMeme());
@@ -63,7 +65,6 @@ function onDeleteLine() {
     deleteLine(gCurrLineIdx);
     drawMeme(getImgById(gCurrId).url, getMeme());
     gCurrLineIdx = getMeme().lines.length - 1;
-    console.log(gCurrLineIdx);
 }
 function onClearLines() {
     clearLines();
@@ -73,6 +74,13 @@ function onClearLines() {
 
 // FUNCTIONALITY
 function onDownloadMeme(elLink) {
-    var imgContent = gCanvas.toDataURL('image/jpeg');
+    const imgContent = gCanvas.toDataURL('image/jpeg');
     elLink.href = imgContent;
+}
+
+function onSaveMeme() {
+    const imgContent = gCanvas.toDataURL('image/jpeg');
+    gMyMemes.push(imgContent);
+    console.log(gMyMemes);
+    saveToStorage(KEY, gMyMemes);
 }
