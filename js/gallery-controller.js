@@ -8,6 +8,7 @@ let gMyMemes;
 function openGallery(isGallery) {
     document.querySelector('.meme-editor').classList.add('hidden');
     document.querySelector('.gallery-container').classList.remove('hidden');
+    toggleMenu();
     if (isGallery) renderGallery();
     else renderMyMemes();
 }
@@ -37,3 +38,7 @@ function getMyMemes() {
     if (!gMyMemes) gMyMemes = [];
 }
 
+function toggleMenu(){
+    document.querySelector('.nav-menu').classList.toggle('show');
+    document.querySelector('.screen').classList.toggle('show');
+}

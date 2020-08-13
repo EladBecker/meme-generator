@@ -10,32 +10,36 @@
 
 <body onload="renderGallery()">
     <div class="main-container">
-        <header class="flex-wrap space-between center">
-           <h1 class="logo">7/20-gag</h1>
-            <ul class="nav-menu flex-wrap space-between center">
+        <header class="flex space-between center">
+           <div class="logo">7/20-gag</div>
+           <span class="moto">&nbsp;go func the world</span>
+           
+            <ul class="nav-menu flex wrap space-between center">
                 <a href="#" onclick="openGallery(true)">
-                    <li>gallery</li>
+                    <li>Gallery</li>
                 </a>
                 <a href="#" onclick="openGallery(false)">
                     <li>My Memes</li>
                 </a>
                 <a href="#">
-                    <li>about</li>
+                    <li>About</li>
                 </a>
             </ul>
+            <button class="toggle-menu-btn fa" onclick="toggleMenu()" alt="Open main menu">☰</button>
         </header>
+        <div class="screen" onclick="toggleMenu()"></div>
         <section class="search"><h2>search</h2></section>
-        <section class="meme-editor flex-wrap space-between hidden">
+        <section class="meme-editor flex wrap space-between hidden">
             <div class="canvas-container">
                 <canvas id="memeCanvas"></canvas>
             </div>
             <div class="edit-panel center middle">
-                <div class="panel-line flex-wrap">
+                <div class="panel-line flex wrap">
                     <input type="text" class="line-text" onchange="onEditLine();" onkeypress="this.onchange();"
                         onpaste="this.onchange();" oninput="this.onchange();" />
                 </div>
-                <div class="panel-line flex-wrap">
-                    <button class="change-line">
+                <div class="panel-line flex wrap">
+                    <button class="change-line" onclick="onChangeLine()">
                         <i class="fas fa-exchange-alt"></i>
                     </button>
                     <button class="add-line" onclick="onAddLine()">
@@ -47,16 +51,8 @@
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
-                <div class="panel-line flex-wrap">
-                    <button class="font-up" onclick="onEditFontSize(10)">
-                        <i class="fas fa-font"></i>
-                        <i class="fas fa-plus"></i>
-                        
-                    </button>
-                    <button class="font-down" onclick="onEditFontSize(-10)">
-                        <i class="fas fa-font"></i>
-                        <i class="fas fa-minus"></i>
-                    </button>
+                <div class="panel-line flex wrap">
+                    <input type="range" class="font-size" min="10" max="50" oninput="onEditFontSize(this.value)" />
                     <button class="left" onclick="onEditAlign('left')">
                         <i class="fas fa-align-left"></i>
                     </button>
@@ -67,7 +63,7 @@
                         <i class="fas fa-align-right"></i>
                     </button>
                 </div>
-                <div class="panel-line flex-wrap">
+                <div class="panel-line flex wrap">
                     <select class="fonts" onchange="onEditFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
@@ -76,7 +72,7 @@
                     <input type="color" class="fill-color" onchange="onEditFill(this.value)" value="#ffffff" />
                     <input type="color" class="outline-color" onchange="onEditStroke(this.value)" />
                 </div>
-                <div class="panel-line flex-wrap">
+                <div class="panel-line flex wrap">
                     <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download
                         (.jpg)</a>
                     <button class="save" onclick="onSaveMeme()">save</button>
@@ -85,7 +81,7 @@
             </div>
         </section>
         <section class="gallery-container">
-            <div class="img-list-container flex-wrap">
+            <div class="img-list-container flex wrap">
             </div>
         </section>
         <footer class="middle">

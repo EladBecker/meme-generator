@@ -13,7 +13,7 @@ let gCurrLineIdx;
 
 function initMemeEditor(id) {
     document.querySelector('.meme-editor').classList.remove('hidden');
-    document.querySelector('.gallery').classList.add('hidden');
+    document.querySelector('.gallery-container').classList.add('hidden');
     initCanvas();
     gCurrId = id;
     drawMeme(getImgById(gCurrId).url, getMeme());
@@ -24,13 +24,24 @@ function initMemeEditor(id) {
 
 // EDIT PANEL
 function onEditLine() {
+    if (!getLineNum()) return;
     const txt = document.querySelector('.line-text').value;
     editLine(gCurrLineIdx, txt);
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
 
-function onEditFontSize(diff) {
-    editFontSize(gCurrLineIdx, diff);
+function onChangeLine() {
+    gCurrLineIdx = (gCurrLineIdx < getLineNum() - 1) ? gCurrLineIdx + 1 : 0;
+    const currLine = getCurrLine(gCurrLineIdx)
+    document.querySelector('.line-text').value = currLine.txt;
+    document.querySelector('.font-size').value = currLine.size;
+    document.querySelector('.fonts').value = currLine.font;
+    document.querySelector('.fill-color').value = currLine.fill;
+    document.querySelector('.outline-color').value = currLine.stroke;
+}
+
+function onEditFontSize(newSize) {
+    editFontSize(gCurrLineIdx, newSize);
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
 

@@ -30,12 +30,19 @@ function getKeywords() {
     return gKeywords;
 }
 
+function getLineNum(){
+    return gMeme.lines.length;
+}
+function getCurrLine(currLine){
+    return gMeme.lines[currLine];
+}
+
 function editLine(lineIdx, txt) {
     gMeme.lines[lineIdx].txt = txt;
 }
 
-function editFontSize(lineIdx, diff) {
-    gMeme.lines[lineIdx].size += diff;
+function editFontSize(lineIdx, newSize) {
+    gMeme.lines[lineIdx].size = newSize;
 }
 
 function editFont(lineIdx, fontName) {
