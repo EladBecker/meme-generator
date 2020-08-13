@@ -4,8 +4,6 @@
 window.addEventListener('resize', function () {
     // Note: changing the canvas dimension this way clears the canvas
     resizeCanvas();
-    onLoadImgToCanvas(1);
-    onLoadMemeTxt();
 });
 
 let gCurrId;
@@ -26,18 +24,20 @@ function initMemeEditor(id) {
 function onEditLine() {
     if (!getLineNum()) return;
     const txt = document.querySelector('.line-text').value;
-    editLine(gCurrLineIdx, txt);
+    editLine(gCurrLineIdx, txt.toUpperCase());
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
 
 function onChangeLine() {
     gCurrLineIdx = (gCurrLineIdx < getLineNum() - 1) ? gCurrLineIdx + 1 : 0;
-    const currLine = getCurrLine(gCurrLineIdx)
+    const currLine = getCurrLine(gCurrLineIdx);
     document.querySelector('.line-text').value = currLine.txt;
     document.querySelector('.font-size').value = currLine.size;
     document.querySelector('.fonts').value = currLine.font;
     document.querySelector('.fill-color').value = currLine.fill;
     document.querySelector('.outline-color').value = currLine.stroke;
+    document.querySelector('.line-text').focus();
+    drawMeme(getImgById(gCurrId).url, getMeme());
 }
 
 function onEditFontSize(newSize) {
@@ -69,6 +69,8 @@ function onAddLine() {
     addLine(gCurrLineIdx);
     gCurrLineIdx = getMeme().lines.length - 1;
     drawMeme(getImgById(gCurrId).url, getMeme());
+    document.querySelector('.line-text').value = '';
+    document.querySelector('.line-text').focus();
 }
 
 function onDeleteLine() {
@@ -82,6 +84,23 @@ function onClearLines() {
     gCurrLineIdx = 0;
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
+
+function onMoveLine(diff) {
+    moveLine(gCurrLineIdx, diff);
+    drawMeme(getImgById(gCurrId).url, getMeme());
+}
+
+document.addEventListener('keydown', (ev) => {
+
+    if (ev.code === "ArrowUp") {
+        ev.preventDefault();
+        onMoveLine(-10);
+    }
+    else if (ev.code === "ArrowDown") {
+        ev.preventDefault();
+        onMoveLine(10);
+    }
+});
 
 // FUNCTIONALITY
 function onDownloadMeme(elLink) {

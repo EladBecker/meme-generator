@@ -1,7 +1,7 @@
 'use strict';
 
 const KEY = 'MY_MEMES';
-let gImgsCount = 18;
+let gImgsCount = 21;
 let gMyMemes;
 
 
@@ -16,7 +16,10 @@ function openGallery(isGallery) {
 function renderGallery() {
     let strHTML = '';
     for (let i = 1; i <= gImgsCount; i++) {
-        strHTML += `<img src="img/meme-imgs-square/${i}.jpg" onclick="initMemeEditor(${i})"  class="square"/>`
+        strHTML += `
+        <div>
+            <img src="img/meme-imgs-square/${i}.jpg" onclick="initMemeEditor(${i})" />
+        </div>`
     }
     document.querySelector('.img-list-container').innerHTML = strHTML;
     getMyMemes();
@@ -26,7 +29,7 @@ function renderMyMemes() {
     getMyMemes();
     let strHTML = '';
     gMyMemes.forEach(img => {
-        strHTML += `<img src="${img}" class="square" />`;
+        strHTML += `<img src="${img}" />`;
     });
     document.querySelector('.img-list-container').innerHTML = strHTML;
 }

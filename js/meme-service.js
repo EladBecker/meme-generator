@@ -1,6 +1,6 @@
 'use strict';
 
-const NUM_OF_IMGS = 18;
+const NUM_OF_IMGS = 21;
 
 // DECLERATION
 let gKeywords = {
@@ -30,10 +30,14 @@ function getKeywords() {
     return gKeywords;
 }
 
-function getLineNum(){
+function getLines(){
+    return gMeme.lines;
+}
+
+function getLineNum() {
     return gMeme.lines.length;
 }
-function getCurrLine(currLine){
+function getCurrLine(currLine) {
     return gMeme.lines[currLine];
 }
 
@@ -55,6 +59,10 @@ function editFill(lineIdx, fillColor) {
 
 function editStroke(lineIdx, strokeColor) {
     gMeme.lines[lineIdx].stroke = strokeColor;
+}
+
+function moveLine(lineIdx, diff) {
+    gMeme.lines[lineIdx].y += diff;
 }
 
 function editAlign(lineIdx, alignTo) {
@@ -82,8 +90,8 @@ function addLine(prevLineIdx) {
     if (!refLine) {
         refLine = {
             txt: 'New line',
-            stroke: '#000',
-            fill: '#fff',
+            stroke: '#000000',
+            fill: '#ffffff',
             size: 40,
             font: 'Impact',
             align: 'center',
@@ -119,6 +127,6 @@ function _createImgs() {
     }
 }
 
-function _createImg(id){
-    return {id, url: `img/meme-imgs-square/${id}.jpg`, keywords: []};
+function _createImg(id) {
+    return { id, url: `img/meme-imgs-square/${id}.jpg`, keywords: [] };
 }
