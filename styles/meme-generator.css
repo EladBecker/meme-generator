@@ -77,6 +77,10 @@ header {
     width: 335px;
 }
 
+.toggle-menu-btn {
+    display: none;
+}
+
 /* Meme Editor */
 
 .meme-editor {
@@ -218,11 +222,16 @@ footer {
         margin-block-end: 5px;
     }
     .main-container {
+position:relative;
         width: 100%;
         margin: 0;
     }
     /* COMPONENTS */
     /* Header */
+    header {
+        position:fixed;
+        width: 75vw;
+    }
     header .logo {
         display: inline-block;
     }
@@ -231,33 +240,35 @@ footer {
         width: 0;
     }
     .nav-menu {
-        flex-direction: column;
-        position: absolute;
-        display: none;
-        top: 40px;
-        right: 0;
+        position: fixed;
+        display: block;
+        top: -190px;
+        left: 0;
         z-index: 2;
         background: #ff8000d7;
         text-align: center;
+        transition: all 0.4s;
     }
-    .toggle-menu-btn{
+    .toggle-menu-btn {
         background-color: #c06102;
         border: none;
         border-radius: 6px;
-        height: 25px;
-        width: 25px;
+        height: 40px;
+        width: 40px;
         color: #fff;
-        font-size: 0.7em;
+        font-size: 1em;
         text-align: center;
+        display: inline-block;
     }
     .show {
-        display: block;
+        top: 40px;
     }
     .screen {
-        position: absolute;
+        position: fixed;
         display: none;
         height: 100vh;
         width: 100vh;
+        top:60px;
     }
     .screen.show {
         display: block;
