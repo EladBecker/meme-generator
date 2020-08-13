@@ -67,6 +67,7 @@ header {
     padding: 0 50px;
     background-color: #ff7f00;
     color: #fff;
+    z-index: 2; 
 }
 
 .moto {
