@@ -16,7 +16,7 @@ html {
     font-family: Montserrat;
     font-size: 20px;
     font-weight: 400;
-    color: #000;
+    color: rgb(46, 46, 46);
 }
 
 body {
@@ -25,7 +25,7 @@ body {
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
-    background-color: #e3e3e3;
+    background-color: #616161;
 }
 
 h1 {
@@ -42,7 +42,7 @@ a {
 }
 
 a:hover {
-    color: rgb(78, 78, 216);
+    color: rgb(197, 197, 197);
 }
 
 /*  LAYOUT */
@@ -52,7 +52,10 @@ a:hover {
     margin: 0 auto;
     flex: 1 0 auto;
     justify-content: center;
-    min-height: 80vh;
+    min-height: 90vh;
+    border-right: 1px solid rgb(104, 104, 104);
+    border-left: 1px solid rgb(104, 104, 104);
+    ;
 }
 
 .logo {
@@ -69,7 +72,7 @@ a:hover {
 
 header {
     padding: 0 50px;
-    background-color: #ff7f00;
+    background-color: #c55438;
     color: #fff;
     z-index: 2;
 }
@@ -87,11 +90,21 @@ header {
     display: none;
 }
 
+input[type=text] {
+    max-width: 374px;
+    height: 60px;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 0 15px;
+}
+
 /* Meme Editor */
 
 .meme-editor {
     padding: 25px 50px;
-    background-color: #e3e3e3;
+    background-color: #616161;
 }
 
 .canvas-container {
@@ -115,16 +128,6 @@ header {
     font-size: 2em;
 }
 
-.meme-editor .line-text {
-    max-width: 374px;
-    height: 60px;
-    border: none;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 1.2em;
-    padding: 0 15px;
-}
-
 .meme-editor select {
     max-width: 218px;
     height: 60px;
@@ -145,17 +148,35 @@ header {
 .meme-editor .download, .meme-editor .save, .meme-editor .share {
     font-family: inherit;
     font-size: inherit;
-    background-color: #ff7f00;
+    background-color: #c55438;
     color: #fff;
     width: 120px;
     text-align: center;
     font-size: 2em;
+    cursor: pointer;
+}
+
+.meme-editor .download:hover, .meme-editor .save:hover {
+    background-color: #ff8c6f;
+}
+
+.meme-editor .share:hover {
+    background-color: #3b5998;
 }
 
 /* Gallery */
 
+.search {
+    padding: 10px;
+    color: #fff;
+}
+
+.search span:hover {
+    color: #999999;
+}
+
 .gallery-container {
-    background-color: #e3e3e3;
+    background-color: #616161;
     max-width: 1200px;
 }
 
@@ -175,13 +196,16 @@ header {
 /* Footer */
 
 footer {
-    height: 20vh;
+    height: 10vh;
     width: 1200px;
     margin: 0 auto;
-    background-color: #ff7f00;
+    background-color: #c55438;
     color: #fff;
     text-align: center;
     flex-shrink: 0;
+    border-right: 1px solid rgb(104, 104, 104);
+    border-left: 1px solid rgb(104, 104, 104);
+    ;
 }
 
 /* HELPERS */
@@ -219,9 +243,9 @@ footer {
 
 @media(max-width: 666px) {
     /* BASE */
-    html, body{
+    html, body {
         width: 100vw;
-        margin: 0;  
+        margin: 0;
         padding: 0;
     }
     .logo {
@@ -243,7 +267,7 @@ footer {
         display: inline-block;
     }
     .moto {
-        display:none;
+        display: none;
     }
     .nav-menu {
         position: fixed;
@@ -252,13 +276,13 @@ footer {
         left: 0;
         width: 100vw;
         z-index: 2;
-        background: #ff8000d7;
+        background: #943e29c9;
         text-align: center;
         transition: all 0.4s;
         padding-inline-start: 0;
     }
     .toggle-menu-btn {
-        background-color: #c06102;
+        background-color: #943e29;
         border: none;
         border-radius: 6px;
         height: 40px;
@@ -287,11 +311,13 @@ footer {
     /* Meme Editor */
     .meme-editor {
         padding: 20px;
+        position: relative;
+        top: 62px;
     }
     .canvas-container {
-        width: 335px;
-        height: 335px;
-        margin: 20px 0;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto 50px;
         justify-content: center;
     }
     .edit-panel {
@@ -300,13 +326,29 @@ footer {
     .meme-editor .line-text, .meme-editor select {
         height: 30px;
     }
+    input[type=text], select {
+        height: 30px;
+    }
     .meme-editor .fill-color, .meme-editor .outline-color {
         height: 30px;
         width: 30px;
     }
+
+    .meme-editor .share{
+        background-color: #3b5998;
+    }
+    /* Search */
+    .search {
+        justify-content: center;
+    }
+    .keywords-map {
+        display: none;
+    }
     /* Gallery */
-    .gallery-container{
+    .gallery-container {
         width: 100vw;
+        position: relative;
+        top: 62px;
     }
     .gallery-container img {
         max-width: 150px;
@@ -314,13 +356,15 @@ footer {
         object-fit: cover;
         margin: 7px 0;
     }
-    
     /* Footer */
     footer {
-        height: 90px;
+        height: 20vh;
         width: 100vw;
         font-size: 0.7em;
         padding-bottom: 5px;
+    }
+    footer.middle {
+        justify-content: flex-end;
     }
     /* HELPERS */
     .grid {

@@ -85,18 +85,6 @@ function onMoveLine(diff) {
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
 
-// document.addEventListener('keydown', (ev) => {
-
-//     if (ev.code === "ArrowUp") {
-//         ev.preventDefault();
-//         onMoveLine(-10);
-//     }
-//     else if (ev.code === "ArrowDown") {
-//         ev.preventDefault();
-//         onMoveLine(10);
-//     }
-// });
-
 // FUNCTIONALITY
 function onDownloadMeme(elLink) {
     const imgContent = gCanvas.toDataURL('image/jpeg');

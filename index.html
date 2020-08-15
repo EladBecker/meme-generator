@@ -28,11 +28,9 @@
             </ul>
             <button class="toggle-menu-btn" onclick="toggleMenu()" alt="Open main menu">☰</button>
         </header>
-
         <div class="screen" onclick="toggleMenu()"></div>
-
         <section class="meme-editor hidden">
-            <div class="canvas-container">
+            <div class="canvas-container middle">
                 <canvas id="memeCanvas"></canvas>
             </div>
             <div class="edit-panel middle">
@@ -92,7 +90,7 @@
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShareMeme(this, event)">
                         <input name="img" id="imgData" type="hidden" />
                         <button class="share" type="submit" title="Share to Facebook">
-                            <i class="fas fa-share-alt"></i>
+                            <i class="fab fa-facebook-f"></i>
                         </button>
                         <div class="share-container"></div>
                     </form>
@@ -103,8 +101,7 @@
             <div class="search flex">
             <div class="filter-engine">
                 <input placeholder="Search..." type="text" class="search-input line-text"/> 
-                <!-- onchange="onSearch(this.value);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"  -->
-                <button class="search-btn" hidden onclick="onSearch()"></button>
+                <button class="search-btn" onclick="onSearch()" hidden></button>
             </div>
             <div class="keywords-map"></div>
         </div>

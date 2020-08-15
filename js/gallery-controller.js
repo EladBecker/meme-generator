@@ -1,7 +1,6 @@
 'use strict';
 
 const KEY = 'MY_MEMES';
-let gImgsCount = 21;
 let gMyMemes;
 
 function init() {
@@ -57,11 +56,8 @@ function toggleMenu() {
 //SEARCH
 
 function onSearch() {
-    const queryStr = document.querySelector('.search-input').value;
-    if (queryStr === '' || queryStr.length < 3) {
-        renderGallery();
-        return;
-    }
+    const queryStr = document.querySelector('.search-input').value.toLowerCase();
+    if (queryStr === '' || queryStr.length < 3) return;
     updateKeywords(queryStr);
     const keywordsMap = getKeywordsMap();
     console.log(keywordsMap);
@@ -74,8 +70,8 @@ function onSearch() {
     renderGallery(searchRslts);
     renderKeywordsMap();
 }
-document.querySelector('.search-input').addEventListener('keyup', ev=>{
-    if(ev.keyCode === 13){
+document.querySelector('.search-input').addEventListener('keyup', ev => {
+    if (ev.keyCode === 13) {
         ev.preventDefault();
         document.querySelector('.search-btn').click();
     }
@@ -83,10 +79,21 @@ document.querySelector('.search-input').addEventListener('keyup', ev=>{
 
 function renderKeywordsMap() {
     const keywordsMap = getKeywordsMap();
+    let maxSearch = 0;
+    for (const keyword in keywordsMap) {
+        maxSearch = maxSearch > keywordsMap[keyword] ? maxSearch : keywordsMap[keyword];
+    }
     var strHTML = '';
     for (const keyword in keywordsMap) {
-        const currKeywordCount = keywordsMap[keyword];
-        strHTML += `<span style="font-size:${currKeywordCount * 10 > 50 ? 50 : currKeywordCount * 10}px; cursor:pointer;" onclick="onSearch('${keyword}')">&nbsp;${keyword}&nbsp;</span>`
+        strHTML += `
+            <span style="font-size:${keywordsMap[keyword] * 50 / maxSearch }px; cursor:pointer;"   onclick="onKeywordClick('${keyword}')">
+                &nbsp;${keyword}&nbsp;
+            </span>`
     }
     document.querySelector('.keywords-map').innerHTML = strHTML;
+}
+
+function onKeywordClick(keyword) {
+    document.querySelector('.search-input').value = keyword;
+    document.querySelector('.search-btn').click();
 }
