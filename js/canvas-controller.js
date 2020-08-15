@@ -3,15 +3,20 @@
 let gCanvas;
 let gCtx;
 
-function initCanvas() {
+function initCanvas(url) {
     gCanvas = document.getElementById('memeCanvas');
     gCtx = gCanvas.getContext('2d');
+    const img = new Image();
+    img.src = url;
     resizeCanvas();
+    const scale = Math.min(gCanvas.width / img.width, gCanvas.height / img.height) * 1.1;
+    gCanvas.height = img.height * scale;
+    gCanvas.width = img.width * scale;
     handleEvents();
 }
 
 function handleEvents() {
-    gCanvas.addEventListener('mousedown', function (){
+    gCanvas.addEventListener('mousedown', function () {
         gCanvas.addEventListener('mousemove', dragTxt);
     });
     gCanvas.addEventListener('mouseup', function () {

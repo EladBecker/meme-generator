@@ -17,15 +17,15 @@ html {
     font-size: 20px;
     font-weight: 400;
     color: #000;
-    height: 100vh;
 }
 
 body {
     margin: 0;
     max-width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
+    background-color: #e3e3e3;
 }
 
 h1 {
@@ -52,6 +52,7 @@ a:hover {
     margin: 0 auto;
     flex: 1 0 auto;
     justify-content: center;
+    min-height: 80vh;
 }
 
 .logo {
@@ -63,10 +64,6 @@ a:hover {
 }
 
 /* COMPONENTS */
-
-.search {
-    border: 1px solid brown;
-}
 
 /* Header */
 
@@ -152,6 +149,7 @@ header {
     color: #fff;
     width: 120px;
     text-align: center;
+    font-size: 2em;
 }
 
 /* Gallery */
@@ -177,7 +175,7 @@ header {
 /* Footer */
 
 footer {
-    height: 205px;
+    height: 20vh;
     width: 1200px;
     margin: 0 auto;
     background-color: #ff7f00;
@@ -189,9 +187,9 @@ footer {
 /* HELPERS */
 
 .hidden {
-    visibility: hidden;
-    height: 0;
-    padding: 0;
+    display: none;
+    /* height: 0;
+    padding: 0; */
 }
 
 .flex {
@@ -216,18 +214,6 @@ footer {
     width: 38px;
     height: 38px;
 }
-
-/* .square {
-    position: relative;
-    display: block;
-}
-
-.square:before{
-    content: '';
-    display: block;
-    padding-bottom: 100%;
-    background-color: red;
-} */
 
 /* MEDIA QUERIES */
 

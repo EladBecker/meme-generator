@@ -1,19 +1,14 @@
 'use strict';
 
-
-window.addEventListener('resize', function () {
-    // Note: changing the canvas dimension this way clears the canvas
-    resizeCanvas();
-});
-
 let gCurrId;
 let gCurrLineIdx;
 
 function initMemeEditor(id) {
     document.querySelector('.meme-editor').classList.remove('hidden');
+    document.querySelector('.meme-editor').classList.add('flex', 'wrap', 'space-between');
     document.querySelector('.gallery-container').classList.add('hidden');
-    initCanvas();
     gCurrId = id;
+    initCanvas(getImgById(gCurrId).url);
     drawMeme(getImgById(gCurrId).url, getMeme());
     gCurrLineIdx = 0;
     onClearLines();
@@ -90,17 +85,17 @@ function onMoveLine(diff) {
     drawMeme(getImgById(gCurrId).url, getMeme());
 }
 
-document.addEventListener('keydown', (ev) => {
+// document.addEventListener('keydown', (ev) => {
 
-    if (ev.code === "ArrowUp") {
-        ev.preventDefault();
-        onMoveLine(-10);
-    }
-    else if (ev.code === "ArrowDown") {
-        ev.preventDefault();
-        onMoveLine(10);
-    }
-});
+//     if (ev.code === "ArrowUp") {
+//         ev.preventDefault();
+//         onMoveLine(-10);
+//     }
+//     else if (ev.code === "ArrowDown") {
+//         ev.preventDefault();
+//         onMoveLine(10);
+//     }
+// });
 
 // FUNCTIONALITY
 function onDownloadMeme(elLink) {
@@ -113,4 +108,8 @@ function onSaveMeme() {
     gMyMemes.push(imgContent);
     console.log(gMyMemes);
     saveToStorage(KEY, gMyMemes);
+}
+
+function onShareMeme(elForm, ev) {
+    uploadImg(elForm, ev);
 }

@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="styles/meme-generator.css">
 </head>
 
-<body onload="renderGallery()">
+<body onload="init()">
     <div class="main-container">
         <header class="flex space-between">
             <div class="logo">7/20-gag
                 <span class="moto">&nbsp;go func the world</span>
             </div>
-            
+
             <ul class="nav-menu flex wrap space-between">
                 <a href="#" onclick="openGallery(true)">
                     <li>Gallery</li>
@@ -30,10 +30,8 @@
         </header>
 
         <div class="screen" onclick="toggleMenu()"></div>
-        <section class="search">
-            <h2>search</h2>
-        </section>
-        <section class="meme-editor flex wrap space-between hidden">
+
+        <section class="meme-editor hidden">
             <div class="canvas-container">
                 <canvas id="memeCanvas"></canvas>
             </div>
@@ -43,33 +41,33 @@
                         onpaste="this.onchange();" oninput="this.onchange();" />
                 </div>
                 <div class="panel-line flex wrap">
-                    <button class="line-up" onclick="onMoveLine(-10)">
+                    <button class="line-up" onclick="onMoveLine(-10)" title="Move line up">
                         <i class="fas fa-arrow-up"></i>
                     </button>
-                    <button class="line-down" onclick="onMoveLine(10)">
+                    <button class="line-down" onclick="onMoveLine(10)" title="Move line down">
                         <i class="fas fa-arrow-down"></i>
                     </button>
-                    <button class="change-line" onclick="onChangeLine()">
+                    <button class="change-line" onclick="onChangeLine()" title="Change line">
                         <i class="fas fa-exchange-alt"></i>
                     </button>
-                    <button class="add-line" onclick="onAddLine()">
+                    <button class="add-line" onclick="onAddLine()" title="Add line">
                         <i class="fas fa-plus"></i></button>
-                    <button class="delete-line" onclick="onDeleteLine()">
+                    <button class="delete-line" onclick="onDeleteLine()" title="Delete line">
                         <i class="fas fa-minus"></i>
                     </button>
-                    <button class="clear" onclick="onClearLines()">
+                    <button class="clear" onclick="onClearLines()" title="Clear all text">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
                 <div class="panel-line flex wrap">
                     <input type="range" class="font-size" min="10" max="50" oninput="onEditFontSize(this.value)" />
-                    <button class="left" onclick="onEditAlign('left')">
+                    <button class="left" onclick="onEditAlign('left')" title="Align left">
                         <i class="fas fa-align-left"></i>
                     </button>
-                    <button class="center" onclick="onEditAlign('center')">
+                    <button class="center" onclick="onEditAlign('center')" title="Align center">
                         <i class="fas fa-align-center"></i>
                     </button>
-                    <button class="right" onclick="onEditAlign('right')">
+                    <button class="right" onclick="onEditAlign('right')" title="Align right">
                         <i class="fas fa-align-right"></i>
                     </button>
                 </div>
@@ -79,18 +77,37 @@
                         <option value="Arial">Arial</option>
                         <option value="Courier New">Courier New</option>
                     </select>
-                    <input type="color" class="fill-color" onchange="onEditFill(this.value)" value="#ffffff" />
-                    <input type="color" class="outline-color" onchange="onEditStroke(this.value)" />
+                    <input type="color" class="fill-color" onchange="onEditFill(this.value)" value="#ffffff"
+                        title="Fill color" />
+                    <input type="color" class="outline-color" onchange="onEditStroke(this.value)"
+                        title="Outline color" />
                 </div>
                 <div class="panel-line flex wrap">
-                    <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg">Download
-                        (.jpg)</a>
-                    <button class="save" onclick="onSaveMeme()">save</button>
-                    <button class="share">share</button>
+                    <a href="#" class="download" onclick="onDownloadMeme(this)" download="my-meme.jpg" title="Download">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <button class="save" onclick="onSaveMeme()" title="Save to your gallery">
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShareMeme(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="share" type="submit" title="Share to Facebook">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <div class="share-container"></div>
+                    </form>
                 </div>
             </div>
         </section>
         <section class="gallery-container">
+            <div class="search flex">
+            <div class="filter-engine">
+                <input placeholder="Search..." type="text" class="search-input line-text"/> 
+                <!-- onchange="onSearch(this.value);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"  -->
+                <button class="search-btn" hidden onclick="onSearch()"></button>
+            </div>
+            <div class="keywords-map"></div>
+        </div>
             <div class="img-list-container flex wrap">
             </div>
         </section>
@@ -102,6 +119,7 @@
     <script src="https://kit.fontawesome.com/7e4dd38c8f.js" crossorigin="anonymous"></script>
     <script src="js/canvas-service.js"></script>
     <script src="js/storage-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/canvas-controller.js"></script>
     <script src="js/meme-controller.js"></script>

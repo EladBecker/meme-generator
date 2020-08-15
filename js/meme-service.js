@@ -1,20 +1,23 @@
 'use strict';
 
-const NUM_OF_IMGS = 21;
-
 // DECLERATION
-let gKeywords = {
-    'trump': 3,
-    'happy': 1
-};
+const NUM_OF_IMGS = 21;
+const KEYWORDS = 'KEYWORDS';
+let gNum = 0;
+let gKeywordsMap;
 let gImgs = []; // { id: 1, url: 'img/meme-imgs-square/1.jpg', keywords: ['Trump'] }
-_createImgs();
+let gId = 1;
 
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: []
 };
+
+// _createImgs();
+_creatImgsNotSquares();
+_creatrKeywords();
+
 
 
 // C.R.U.D.L
@@ -26,11 +29,22 @@ function getMeme() {
     return gMeme;
 }
 
-function getKeywords() {
-    return gKeywords;
+function getKeywordsMap() {
+    return gKeywordsMap;
 }
 
-function getLines(){
+function updateKeywords(newKeyword) {
+    if (!gKeywordsMap[newKeyword]) gKeywordsMap[newKeyword] = 1;
+    else gKeywordsMap[newKeyword]++;
+    console.log(gKeywordsMap);
+    saveToStorage(KEYWORDS, gKeywordsMap);
+}
+
+function getImgs() {
+    return gImgs;
+}
+
+function getLines() {
     return gMeme.lines;
 }
 
@@ -128,5 +142,54 @@ function _createImgs() {
 }
 
 function _createImg(id) {
-    return { id, url: `img/meme-imgs-square/${id}.jpg`, keywords: [] };
+    const img = { id: gId, url: `img/meme-imgs-square/${id}.jpg`, keywords: [gNum++ % 2 === 0 ? 'happy' : 'sad'] };
+    return img;
+}
+
+function _creatrKeywords() {
+    gKeywordsMap = loadFromStorage();
+    if (!gKeywordsMap) {
+        gKeywordsMap = { 'trump': 7, 'happy': 3 };
+        saveToStorage(KEYWORDS, gKeywordsMap);
+    }
+}
+
+function _creatImgsNotSquares() {
+    gImgs.push(_createImgNotSquare('dr evil'));
+    gImgs.push(_createImgNotSquare('cat sleep computer'));
+    gImgs.push(_createImgNotSquare('baby dog sleep'));
+    gImgs.push(_createImgNotSquare('ancient aliens'));
+    gImgs.push(_createImgNotSquare('leo'));
+    gImgs.push(_createImgNotSquare('jail i killed a man'));
+    gImgs.push(_createImgNotSquare('flip computer rage'));
+    gImgs.push(_createImgNotSquare('evil baby'));
+    gImgs.push(_createImgNotSquare('one does not simply'));
+    gImgs.push(_createImgNotSquare('obama laugh'));
+    gImgs.push(_createImgNotSquare('nba kiss artest pierce'));
+    gImgs.push(_createImgNotSquare('matrix what if i told you'));
+    gImgs.push(_createImgNotSquare('putin'));
+    gImgs.push(_createImgNotSquare('puppies'));
+    gImgs.push(_createImgNotSquare('patrick'));
+    gImgs.push(_createImgNotSquare('oprah you get a'));
+    gImgs.push(_createImgNotSquare('third place celebrate'));
+    gImgs.push(_createImgNotSquare('tell me more willy wonka'));
+    gImgs.push(_createImgNotSquare('successful baby'));
+    gImgs.push(_createImgNotSquare('shocked baby'));
+    gImgs.push(_createImgNotSquare('trump 1'));
+    gImgs.push(_createImgNotSquare('trump 2'));
+    gImgs.push(_createImgNotSquare('toy story buzz everywhere'));
+    gImgs.push(_createImgNotSquare('third world solution'));
+    gImgs.push(_createImgNotSquare('yoga puppy dog'));
+    gImgs.push(_createImgNotSquare('what would you do'));
+    gImgs.push(_createImgNotSquare('why the fuck'));
+    gImgs.push(_createImgNotSquare('zero fucks given maria sound of music'));
+}
+
+function _createImgNotSquare(name) {
+    const img = {
+        id: gId++,
+        url: `img/meme-imgs-various-aspect-ratios/${name}.jpg`,
+        keywords: [name.split(' ')]
+    };
+    return img;
 }

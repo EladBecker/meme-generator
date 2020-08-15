@@ -17,17 +17,16 @@ function drawText(line) {
 }
 
 function drawMeme(imgUrl, meme) {
-    // const elContainer = document.querySelector('.canvas-container');
+    const elContainer = document.querySelector('.canvas-container');
     const img = new Image();
     img.src = imgUrl;
     img.onload = () => {
-        // get the scale
-        var scale = Math.min(gCanvas.width / img.width, gCanvas.height / img.height);
-        // get the top left position of the image
-        var x = (gCanvas.width / 2) - (img.width / 2) * scale;
-        var y = (gCanvas.height / 2) - (img.height / 2) * scale;
-        gCtx.drawImage(img, x, y, img.width * scale, img.height * scale);
-        // gCtx.drawImage(img, 0, 0, img.width, img.height);
+        // if (img.height !== img.width) {
+        //     const scale = Math.min(gCanvas.width / img.width, gCanvas.height / img.height);
+        //     elContainer.style.height = img.height * scale + 'px';
+        //     elContainer.style.width = img.width * scale + 'px';
+        // }
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         drawLines(meme);
     }
 }
