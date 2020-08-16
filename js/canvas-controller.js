@@ -22,6 +22,19 @@ function handleEvents() {
     gCanvas.addEventListener('mouseup', function () {
         gCanvas.removeEventListener('mousemove', dragTxt);
     });
+    gCanvas.addEventListener('touchstart', function () {
+        gCanvas.addEventListener('touchmove', touchDragTxt)
+    })
+    gCanvas.addEventListener('touchend', function () {
+        gCanvas.removeEventListener('touchmove',touchDragTxt);
+    })
+}
+
+function touchDragTxt(ev) {
+    ev.preventDefault();
+    console.log(ev);
+    console.log(ev.targetTouches[0].pageX, ev.targetTouches[0].pageY);
+    // TODO: find x and y on canvas
 }
 
 function dragTxt(ev) {

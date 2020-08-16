@@ -168,6 +168,7 @@ input[type=text] {
 
 .meme-editor .download:hover, .meme-editor .save:hover {
     background-color: #ff8c6f;
+    color: #fff;
 }
 
 .meme-editor .share {
@@ -176,6 +177,7 @@ input[type=text] {
 
 .meme-editor .share:hover {
     background-color: #3b5998;
+    color: #fff;
 }
 
 /* Gallery */
