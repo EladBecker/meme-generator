@@ -23,9 +23,11 @@ function renderGallery(imgs) {
     for (let i = 0; i < imgs.length; i++) {
         const img = new Image();
         img.src = imgs[i].url;
+        const keywordsStr = imgs[i].keywords.join(' | ');
         strHTML += `
-        <div class="img-holder">
-            <img src="${imgs[i].url}" class="img-${imgs[i].id}" onclick="initMemeEditor(${imgs[i].id})" />
+        <div class="img-holder" onclick="initMemeEditor(${imgs[i].id})">
+            <img src="${imgs[i].url}" class="img-${imgs[i].id}"  />
+            <div class="img-keywords">${keywordsStr}</div>
         </div>`
     }
     document.querySelector('.img-list-container').innerHTML = strHTML;

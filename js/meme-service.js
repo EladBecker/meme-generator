@@ -98,17 +98,17 @@ function addLine(prevLineIdx) {
     else newY = getCanvas().height / 2;
     let refLine = gMeme.lines[prevLineIdx];
     if (!refLine) refLine = {
-        txt: 'New line',
+        txt: '',
         stroke: '#000000',
         fill: '#ffffff',
         size: 40,
         font: 'Impact',
         align: 'center',
-        x: 100,
+        x: getCanvas().width / 2,
         y: newY
     };
     gMeme.lines.push({
-        txt: 'New line',
+        txt: '',
         stroke: refLine.stroke,
         fill: refLine.fill,
         size: refLine.size,
@@ -172,7 +172,7 @@ function _createImg(name) {
     const img = {
         id: gId++,
         url: `img/meme-imgs-various-aspect-ratios/${name}.jpg`,
-        keywords: [name.split(' ')]
+        keywords: name.split(' ')
     };
     return img;
 }

@@ -130,6 +130,12 @@ input[type=text] {
     background-color: #fff;
     font-family: inherit;
     font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.meme-editor button:hover, .meme-editor a:hover {
+    color: #c55438;
 }
 
 .meme-editor select {
@@ -164,6 +170,10 @@ input[type=text] {
     background-color: #ff8c6f;
 }
 
+.meme-editor .share {
+    transition: background-color 0.25s;
+}
+
 .meme-editor .share:hover {
     background-color: #3b5998;
 }
@@ -193,13 +203,69 @@ input[type=text] {
 .img-holder {
     width: 200px;
     padding: 0;
+    position: relative;
+    cursor: pointer;
+    margin: 10px;
 }
 
-.gallery-container img {
+.img-holder .img-keywords {
+    background-color: rgba(216, 216, 216, 0.5);
+    color: #292929;
+    font-weight: 600;
+    width: 100%;
+    height: 98%;
+    position: absolute;
+    bottom: -10px;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    padding: 10px;
+}
+
+.img-holder .img-keywords:hover {
+    bottom: 5px;
+    opacity: 1;
+}
+
+.img-holder img {
     width: 200px;
     height: 200px;
     object-fit: cover;
-    margin: 10px;
+}
+
+/* About */
+
+.about {
+    color: rgb(216, 216, 216);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    /* width: 90%; */
+    margin: 0 auto;
+}
+
+.about .details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.about img {
+    height: 60%;
+    border-radius: 50%;
+}
+
+.about h3, .about h4 {
+    margin: 5px;
+}
+
+.about ul {
+    padding-left: 40px;
+    line-height: 40px;
 }
 
 /* Footer */
@@ -209,6 +275,7 @@ footer {
     width: 1200px;
     margin: 0 auto;
     background-color: #c55438;
+    background: linear-gradient(0deg, rgba(197, 84, 56, 1) 50%, rgba(97, 97, 97, 1) 100%);
     color: #fff;
     text-align: center;
     flex-shrink: 0;
@@ -252,7 +319,6 @@ footer {
 
 @media(max-width: 666px) {
     /* BASE */
-    
     html, body {
         width: 100vw;
         margin: 0;

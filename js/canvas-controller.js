@@ -27,7 +27,13 @@ function handleEvents() {
 function dragTxt(ev) {
     let lineToDragIdx = getTxtToDrag(ev);
     if (lineToDragIdx < 0 || lineToDragIdx > getLineNum() - 1) return;
+    setCurrLine(lineToDragIdx);
     let dragLine = getCurrLine(lineToDragIdx);
+    document.querySelector('.line-text').value = dragLine.txt;
+    document.querySelector('.font-size').value = dragLine.size;
+    document.querySelector('.fonts').value = dragLine.font;
+    document.querySelector('.fill-color').value = dragLine.fill;
+    document.querySelector('.outline-color').value = dragLine.stroke;
     dragLine.x += ev.movementX;
     dragLine.y += ev.movementY;
     drawMeme(getImgById(gCurrId).url, getMeme());
@@ -43,3 +49,4 @@ function getTxtToDrag(ev) {
     if (distances[shortestDistIdx] < 50) return shortestDistIdx;
     return -1;
 }
+

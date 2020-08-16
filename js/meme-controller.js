@@ -101,3 +101,7 @@ function onSaveMeme() {
 function onShareMeme(elForm, ev) {
     uploadImg(elForm, ev);
 }
+
+function setCurrLine(lineIdx) {
+    gCurrLineIdx = lineIdx;
+}

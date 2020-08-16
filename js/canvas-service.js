@@ -6,7 +6,7 @@ function resizeCanvas() {
     gCanvas.height = elContainer.offsetHeight;
 }
 
-function drawText(line) {
+function drawText(line, isSaving = false) {
     gCtx.lineWidth = '2';
     gCtx.strokeStyle = line.stroke; // 'black'
     gCtx.fillStyle = line.fill; // ''white'
@@ -41,14 +41,5 @@ function getCanvas() {
 }
 function getCtx() {
     return gCtx;
-}
-
-function drawRect(line) {
-    gCtx.beginPath();
-    gCtx.rect(10, line.y - 45, gCanvas.width - 20, line.y + 10); /// x, y, width, height
-    gCtx.strokeStyle = '#ffffff';
-    gCtx.stroke();
-    // gCtx.fillStyle = '';
-    // gCtx.fillRect(x, y, 150, 150); /// x, y, width, height
 }
 
