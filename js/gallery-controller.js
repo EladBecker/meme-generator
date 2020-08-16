@@ -24,7 +24,7 @@ function renderGallery(imgs) {
         const img = new Image();
         img.src = imgs[i].url;
         strHTML += `
-        <div>
+        <div class="img-holder">
             <img src="${imgs[i].url}" class="img-${imgs[i].id}" onclick="initMemeEditor(${imgs[i].id})" />
         </div>`
     }
